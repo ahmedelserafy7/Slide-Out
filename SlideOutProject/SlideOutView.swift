@@ -8,7 +8,30 @@
 
 import UIKit
 
-class SlideOutViewer: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class SlideOutView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    let slideOutViewer: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    let profileImageView: UIImageView = {
+        let iv = UIImageView(image: #imageLiteral(resourceName: "steve"))
+        iv.layer.cornerRadius = 25
+        iv.clipsToBounds = true
+        iv.contentMode = .scaleAspectFill
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
+    
+    let infoTextView: UITextView = {
+        let tv = UITextView()
+        tv.text = "Steve Jobs"
+        tv.backgroundColor = .white
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        return tv
+    }()
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -16,6 +39,7 @@ class SlideOutViewer: NSObject, UICollectionViewDelegate, UICollectionViewDataSo
         cv.backgroundColor = .white
         cv.delegate = self
         cv.dataSource = self
+        cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
     
@@ -32,26 +56,61 @@ class SlideOutViewer: NSObject, UICollectionViewDelegate, UICollectionViewDataSo
         
         blackView.frame = window.frame
         
-        blackView.addSubview(collectionView)
+        window.addSubview(slideOutViewer)
 
-        collectionView.frame = CGRect(x: -250, y: 0, width: 250, height: window.frame.height)
-        
+        slideOutViewer.frame = CGRect(x: -250, y: 0, width: 250, height: window.frame.height)
         
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackView.alpha = 1
-            self.collectionView.frame = CGRect(x: 0, y: 0, width: 250, height: window.frame.height)
+            self.slideOutViewer.frame = CGRect(x: 0, y: 0, width: self.slideOutViewer.frame.width, height: self.slideOutViewer.frame.height)
+            
+            self.setupViews()
             
         }, completion: nil)
     }
     
-    func dismissSlideOut() {
-        print(111)
+    func setupViews() {
+
+        self.slideOutViewer.addSubview(profileImageView)
+        self.slideOutViewer.addSubview(infoTextView)
+        slideOutViewer.addSubview(self.collectionView)
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+        profileImageView.topAnchor.constraint(equalTo: self.slideOutViewer.topAnchor, constant: 24).isActive = true
+        profileImageView.leftAnchor.constraint(equalTo: self.slideOutViewer.leftAnchor, constant: 14).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        infoTextView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8).isActive = true
+        infoTextView.leftAnchor.constraint(equalTo: profileImageView.leftAnchor).isActive = true
+        infoTextView.rightAnchor.constraint(equalTo: slideOutViewer.rightAnchor, constant: -14).isActive = true
+        infoTextView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        let attributedText = NSMutableAttributedString(string: "Steve Jobs", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14), NSForegroundColorAttributeName: UIColor.black])
+        attributedText.append(NSMutableAttributedString(string: "\n@steve_jobs", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName: UIColor.lightGray]))
+        attributedText.append(NSMutableAttributedString(string: "\n\n123 ", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)]))
+        
+        attributedText.append(NSMutableAttributedString(string: "Following", attributes: [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
+        
+        attributedText.append(NSMutableAttributedString(string: "  1.4m ", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)]))
+        
+        attributedText.append(NSAttributedString(string: "Followers", attributes: [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
+        
+        infoTextView.attributedText = attributedText
+        
+        self.collectionView.topAnchor.constraint(equalTo: infoTextView.bottomAnchor, constant: 8).isActive = true
+        self.collectionView.leftAnchor.constraint(equalTo: slideOutViewer.leftAnchor).isActive = true
+        self.collectionView.rightAnchor.constraint(equalTo: slideOutViewer.rightAnchor).isActive = true
+        self.collectionView.bottomAnchor.constraint(equalTo: slideOutViewer.bottomAnchor).isActive = true
+        
+    }
+    
+    func dismissSlideOut() {
+//        print(111)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            
             guard let window = UIApplication.shared.keyWindow else { return }
-            
-            
-            self.collectionView.frame = CGRect(x: -250, y: 0, width: 250, height: window.frame.height)
+            self.slideOutViewer.frame = CGRect(x: -250, y: 0, width: 250, height: window.frame.height)
             self.homeViewController?.dismissView()
             
             self.blackView.alpha = 0
@@ -62,25 +121,38 @@ class SlideOutViewer: NSObject, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
+    var settingLabelsArray: [String] = ["Profile", "Lists", "Bookmarks", "Moments"]
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SlideOutCell
+//        cell.backgroundColor = .red
+        cell.settingsLabel.text = settingLabelsArray[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 60)
+        return CGSize(width: collectionView.frame.width, height: 50)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        dismissSlideOut()
+        let text = settingLabelsArray[indexPath.item]
+        self.homeViewController?.showViewControllerBySettings(text)
     }
     
     private let cellId = "cellId"
     override init() {
         super.init()
         
-        self.collectionView.layer.shadowOpacity = 0.8
-        self.collectionView.layer.shadowRadius = 6
-        self.collectionView.layer.masksToBounds = false
+        self.slideOutViewer.layer.shadowOpacity = 0.6
+        self.slideOutViewer.layer.shadowRadius = 5
+        self.slideOutViewer.layer.masksToBounds = false
         
         collectionView.register(SlideOutCell.self, forCellWithReuseIdentifier: cellId)
     }

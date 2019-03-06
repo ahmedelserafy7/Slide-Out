@@ -14,6 +14,9 @@
 		16D538BA2161DAAC00E9D1B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16D538B82161DAAC00E9D1B2 /* LaunchScreen.storyboard */; };
 		16D538C52161DAAF00E9D1B2 /* SlideOutProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D538C42161DAAF00E9D1B2 /* SlideOutProjectTests.swift */; };
 		16D538D02161DAAF00E9D1B2 /* SlideOutProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D538CF2161DAAF00E9D1B2 /* SlideOutProjectUITests.swift */; };
+		16D538DE2161DCF400E9D1B2 /* SlideOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D538DD2161DCF400E9D1B2 /* SlideOutView.swift */; };
+		16FF14932178EA34002335F9 /* SlideOutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF14922178EA34002335F9 /* SlideOutCell.swift */; };
+		16FF149521790AC1002335F9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF149421790AC1002335F9 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		16D538CB2161DAAF00E9D1B2 /* SlideOutProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlideOutProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16D538CF2161DAAF00E9D1B2 /* SlideOutProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutProjectUITests.swift; sourceTree = "<group>"; };
 		16D538D12161DAAF00E9D1B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16D538DD2161DCF400E9D1B2 /* SlideOutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutView.swift; sourceTree = "<group>"; };
+		16FF14922178EA34002335F9 /* SlideOutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutCell.swift; sourceTree = "<group>"; };
+		16FF149421790AC1002335F9 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,9 @@
 			children = (
 				16D538AF2161DAAB00E9D1B2 /* AppDelegate.swift */,
 				16D538B12161DAAB00E9D1B2 /* ViewController.swift */,
+				16D538DD2161DCF400E9D1B2 /* SlideOutView.swift */,
+				16FF14922178EA34002335F9 /* SlideOutCell.swift */,
+				16FF149421790AC1002335F9 /* InfoViewController.swift */,
 				16D538B32161DAAB00E9D1B2 /* Main.storyboard */,
 				16D538B62161DAAC00E9D1B2 /* Assets.xcassets */,
 				16D538B82161DAAC00E9D1B2 /* LaunchScreen.storyboard */,
@@ -262,8 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16D538DE2161DCF400E9D1B2 /* SlideOutView.swift in Sources */,
 				16D538B22161DAAB00E9D1B2 /* ViewController.swift in Sources */,
+				16FF14932178EA34002335F9 /* SlideOutCell.swift in Sources */,
 				16D538B02161DAAB00E9D1B2 /* AppDelegate.swift in Sources */,
+				16FF149521790AC1002335F9 /* InfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,7 +430,7 @@
 				DEVELOPMENT_TEAM = WY4TJYTZW4;
 				INFOPLIST_FILE = SlideOutProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.AhmedElserafy.SlideOutProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AhmedElserafy.SlideOutProject1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -431,7 +443,7 @@
 				DEVELOPMENT_TEAM = WY4TJYTZW4;
 				INFOPLIST_FILE = SlideOutProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.AhmedElserafy.SlideOutProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AhmedElserafy.SlideOutProject1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -514,6 +526,7 @@
 				16D538D62161DAAF00E9D1B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		16D538D72161DAAF00E9D1B2 /* Build configuration list for PBXNativeTarget "SlideOutProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +535,7 @@
 				16D538D92161DAAF00E9D1B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		16D538DA2161DAAF00E9D1B2 /* Build configuration list for PBXNativeTarget "SlideOutProjectUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +544,7 @@
 				16D538DC2161DAAF00E9D1B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
