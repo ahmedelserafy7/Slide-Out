@@ -75,7 +75,7 @@ class SlideOutView: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
         self.slideOutViewer.addSubview(infoTextView)
         slideOutViewer.addSubview(self.collectionView)
         
-        profileImageView.topAnchor.constraint(equalTo: self.slideOutViewer.topAnchor, constant: 24).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: self.slideOutViewer.topAnchor, constant: 36).isActive = true
         profileImageView.leftAnchor.constraint(equalTo: self.slideOutViewer.leftAnchor, constant: 14).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -85,15 +85,15 @@ class SlideOutView: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
         infoTextView.rightAnchor.constraint(equalTo: slideOutViewer.rightAnchor, constant: -14).isActive = true
         infoTextView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
-        let attributedText = NSMutableAttributedString(string: "Steve Jobs", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14), NSForegroundColorAttributeName: UIColor.black])
-        attributedText.append(NSMutableAttributedString(string: "\n@steve_jobs", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName: UIColor.lightGray]))
-        attributedText.append(NSMutableAttributedString(string: "\n\n123 ", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)]))
+        let attributedText = NSMutableAttributedString(string: "Steve Jobs", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.black])
+        attributedText.append(NSMutableAttributedString(string: "\n@steve_jobs", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
+        attributedText.append(NSMutableAttributedString(string: "\n\n123 ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)]))
         
-        attributedText.append(NSMutableAttributedString(string: "Following", attributes: [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
+        attributedText.append(NSMutableAttributedString(string: "Following", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]))
         
-        attributedText.append(NSMutableAttributedString(string: "  1.4m ", attributes: [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)]))
+        attributedText.append(NSMutableAttributedString(string: "  1.4m ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)]))
         
-        attributedText.append(NSAttributedString(string: "Followers", attributes: [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
+        attributedText.append(NSAttributedString(string: "Followers", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]))
         
         infoTextView.attributedText = attributedText
         
@@ -104,8 +104,7 @@ class SlideOutView: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
         
     }
     
-    func dismissSlideOut() {
-//        print(111)
+     @objc func dismissSlideOut() {
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             
@@ -117,7 +116,6 @@ class SlideOutView: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
         }) { (completed) in
             
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

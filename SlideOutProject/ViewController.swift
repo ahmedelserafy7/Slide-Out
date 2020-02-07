@@ -29,16 +29,13 @@ class ViewController: UICollectionViewController {
         return sv
     }()
     
-    func handleSlideOut() {
-//        print(1233)
-    
+     @objc func handleSlideOut() {
+        
         slideOutView.showSlideOut()
         
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.collectionView?.frame = CGRect(x: 250, y: 0, width: self.collectionView!.frame.width, height: self.collectionView!.frame.height)
         }, completion: nil)
-        
-        
     }
     
     func dismissView() {
@@ -57,16 +54,7 @@ class ViewController: UICollectionViewController {
         
         view.backgroundColor = .white
         collectionView?.backgroundColor = .white
-        
-        let steveImage = UIButton(type: .system)
-        steveImage.setImage(#imageLiteral(resourceName: "steve").withRenderingMode(.alwaysOriginal), for: .normal)
-        steveImage.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        steveImage.layer.cornerRadius = 12
-        steveImage.clipsToBounds = true
-        steveImage.addTarget(self, action: #selector(handleSlideOut), for: .touchUpInside)
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: steveImage)
-        
+       
         setupProfileImageView()
     }
     
@@ -81,4 +69,3 @@ class ViewController: UICollectionViewController {
         profileImageView.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
 }
-
