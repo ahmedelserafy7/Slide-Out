@@ -86,14 +86,14 @@ class SlideOutView: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
         infoTextView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         let attributedText = NSMutableAttributedString(string: "Steve Jobs", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.black])
-        attributedText.append(NSMutableAttributedString(string: "\n@steve_jobs", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
+        attributedText.append(NSMutableAttributedString(string: "\n@steveJobs", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13), NSAttributedString.Key.foregroundColor: UIColor.gray]))
         attributedText.append(NSMutableAttributedString(string: "\n\n123 ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)]))
         
-        attributedText.append(NSMutableAttributedString(string: "Following", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]))
+        attributedText.append(NSMutableAttributedString(string: "Following", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]))
         
         attributedText.append(NSMutableAttributedString(string: "  1.4m ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)]))
         
-        attributedText.append(NSAttributedString(string: "Followers", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]))
+        attributedText.append(NSAttributedString(string: "Followers", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]))
         
         infoTextView.attributedText = attributedText
         
@@ -123,10 +123,11 @@ class SlideOutView: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     var settingLabelsArray: [String] = ["Profile", "Lists", "Bookmarks", "Moments"]
+    var settingImagesArray: [String] = ["profile", "list", "bookmarks", "moments"]
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SlideOutCell
-//        cell.backgroundColor = .red
         cell.settingsLabel.text = settingLabelsArray[indexPath.item]
+        cell.settingsImageView.image = UIImage(named: settingImagesArray[indexPath.item])
         return cell
     }
     

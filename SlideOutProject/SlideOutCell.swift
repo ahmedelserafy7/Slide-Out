@@ -12,7 +12,7 @@ class SlideOutCell: UICollectionViewCell {
     
     let settingsImageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .red
+//        iv.backgroundColor = .red
         iv.contentMode = .scaleAspectFill
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
@@ -27,7 +27,7 @@ class SlideOutCell: UICollectionViewCell {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
-//     backgroundColor = .green
+        
         addSubview(settingsImageView)
         addSubview(settingsLabel)
         
