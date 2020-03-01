@@ -20,7 +20,7 @@ Have you ever thought how to build **Slide Out Menu** from scratch before?
 
 ## Basic Example
 
-![](https://i.imgur.com/CFXmPRn.gif) 
+![](https://i.imgur.com/aZRXlon.gif) 
 
 ## Requirements
 
