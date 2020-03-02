@@ -18,7 +18,7 @@ Have you ever thought how to build **Slide Out Menu** from scratch before?
 2. Creating **CollectionView**.
 3. Using **UITapGestureRecognizer**.
 
-## Basic Example
+## Demo
 
 ![](https://i.imgur.com/aZRXlon.gif) 
 
